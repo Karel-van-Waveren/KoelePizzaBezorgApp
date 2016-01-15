@@ -11,7 +11,7 @@ namespace PizzaBezorgApp.ViewModels
         public string Title { get; }
         public BestelSchermViewModel()
         {
-            Title = "Bestel hier uw Pizza";
+            Title = "Hier begint uw bezorging";
         }
     }
 }

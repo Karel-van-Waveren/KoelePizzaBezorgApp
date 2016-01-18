@@ -37,6 +37,7 @@ namespace PizzaBezorgApp.Views
             //Settings for timer
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
+            CenterMap();
             RefreshMapLocation();
         }
 
@@ -46,15 +47,37 @@ namespace PizzaBezorgApp.Views
 
         }
 
+        public async void CenterMap()
+        {
+            Geoposition pos = await AppGlobal.Instance._GeoUtil.GetGeoLocation();
+            MapControl1.Center = pos.Coordinate.Point;
+        }
+
+        private void SetPushpins()
+        {
+            if (AppGlobal.Instance.PizzaBestellingen != null)
+            {
+                foreach (PizzaBestelling l in AppGlobal.Instance.PizzaBestellingen)
+                {
+                    // Create a MapIcon.
+                    MapIcon icon = new MapIcon();
+                    icon.Location = new Geopoint(l.position);
+                    icon.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/icons/museum35.png"));
+                    icon.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                    MapControl1.MapElements.Add(icon);
+                }
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            SetPushpins();
             timer.Start();
         }
 
         public async void RefreshMapLocation()
         {
             Geoposition pos = await AppGlobal.Instance._GeoUtil.GetGeoLocation();
-            MapControl1.Center = pos.Coordinate.Point;
             user.Location = pos.Coordinate.Point;
             user.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/icons/pin65.png"));
         }

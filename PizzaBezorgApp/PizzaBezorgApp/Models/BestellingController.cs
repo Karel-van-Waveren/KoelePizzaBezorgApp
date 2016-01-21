@@ -16,6 +16,8 @@ namespace PizzaBezorgApp.Models
         {
             Bestellingen = new List<Bestelling>();
             LocationList = new List<Location>();
+            LoadBestelling();
+            AddTestBestellingen();
         }
 
         public List<Bestelling> LoadBestelling()
@@ -44,6 +46,12 @@ namespace PizzaBezorgApp.Models
             Bestellingen.Add(new PizzaBestelling(2, "kebab", Position));
             Bestellingen.Add(new PizzaBestelling(4, "hawai", Position));
             Bestellingen.Add(new PizzaBestelling(1, "salami", Position));
+
+            LocationList.Add(new PizzaBestelling(4, "hawai", Position));
+            LocationList.Add(new PizzaBestelling(3, "salami", Position));
+            LocationList.Add(new PizzaBestelling(2, "kebab", Position));
+            LocationList.Add(new PizzaBestelling(4, "hawai", Position));
+            LocationList.Add(new PizzaBestelling(1, "salami", Position));
         }
     }
 }

@@ -18,11 +18,9 @@ namespace PizzaBezorgApp.Models
 
         public AppGlobal()
         {
+            BestellingController = new BestellingController();
             _GeoUtil = new GeoUtil();
             _CurrentSession = new CurrentSession();
-            BestellingController = new BestellingController();
-            BestellingController.AddTestBestellingen();
-            BestellingController.LoadBestelling();
         }
     }
 }

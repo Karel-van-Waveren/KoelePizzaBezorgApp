@@ -2,10 +2,12 @@
 using PizzaBezorgApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Geolocation;
+using Windows.Devices.Geolocation.Geofencing;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Services.Maps;
@@ -35,6 +37,7 @@ namespace PizzaBezorgApp.Views
         public KaartScherm()
         {
             this.InitializeComponent();
+            DataContext = new KaartSchermViewModel();
             MapControl1.MapElements.Add(user);
             //Settings for timer
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -58,9 +61,9 @@ namespace PizzaBezorgApp.Views
 
         private void SetPushpins()
         {
-            if (AppGlobal.Instance.BestellingController.LoadBestelling() != null)
+            if (AppGlobal.Instance._CurrentSession.CurrentRoute != null)
             {
-                foreach (Bestelling l in AppGlobal.Instance.BestellingController.LoadBestelling())
+                foreach (Location l in AppGlobal.Instance._CurrentSession.CurrentRoute.Bestellingen)
                 {
                     // Create a MapIcon.
                     MapIcon icon = new MapIcon();
@@ -74,7 +77,7 @@ namespace PizzaBezorgApp.Views
 
         private async void UpdateRouteOnMap()
         {
-
+            Debug.WriteLine("error");
             List<Location> route = AppGlobal.Instance._CurrentSession.GetToFollowRoute();
 
             if (!route.Any())
@@ -116,14 +119,32 @@ namespace PizzaBezorgApp.Views
         {
             SetPushpins();
             timer.Start();
+            GeofenceMonitor.Current.GeofenceStateChanged += GeofenceStateChanged;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            timer.Stop();
+            GeofenceMonitor.Current.GeofenceStateChanged -= GeofenceStateChanged;
+            MapControl1.MapElements.Clear();
+        }
+
+        private void GeofenceStateChanged(GeofenceMonitor sender, object args)
+        {
+            throw new NotImplementedException();
         }
 
         public async void RefreshMapLocation()
         {
             Geoposition pos = await AppGlobal.Instance._GeoUtil.GetGeoLocation();
             user.Location = pos.Coordinate.Point;
+            user.NormalizedAnchorPoint = new Point(0.5, 0.5);
             user.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/icons/pin65.png"));
         }
 
+        private void Bestelling_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(BestelScherm));
+        }
     }
 }

@@ -110,7 +110,7 @@ namespace PizzaBezorgApp.Models
             }
             catch (Exception)
             {
-                Debug.WriteLine("no access to location");
+                Debug.WriteLine("App heeft geen toegang tot uw locatie");
                 return null;
             }
         }

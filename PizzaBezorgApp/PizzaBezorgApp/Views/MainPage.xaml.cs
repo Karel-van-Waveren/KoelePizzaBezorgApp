@@ -1,4 +1,5 @@
-﻿using PizzaBezorgApp.ViewModels;
+﻿using PizzaBezorgApp.Models;
+using PizzaBezorgApp.ViewModels;
 using PizzaBezorgApp.Views;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace PizzaBezorgApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(BestelScherm));
+            Frame.Navigate(typeof(KaartScherm));
         }
     }
 }

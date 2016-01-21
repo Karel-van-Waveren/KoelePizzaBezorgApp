@@ -20,7 +20,22 @@ namespace PizzaBezorgApp.Models
         public BestellingController CurrentRoute
         {
             get { return _currentRoute; }
-            set { _currentRoute = value;}
+            set { _currentRoute = value; RouteIsChanged(); }
+        }
+        
+        public void SwitchRoute()
+        {
+            CurrentRoute = new BestellingController();
+        }
+
+        public static event EventHandler RouteChanged;
+        public static void RouteIsChanged()
+        {
+            var handler = RouteChanged;
+            if (handler != null)
+            {
+                handler(null, new EventArgs());
+            }
         }
 
         public List<Location> GetToFollowRoute()
@@ -29,8 +44,6 @@ namespace PizzaBezorgApp.Models
             if (FollowedRoute == null)
             {
                 FollowedRoute = new List<Location>();
-                AppGlobal.Instance._CurrentSession.FollowedRoute.Add(AppGlobal.Instance._CurrentSession.CurrentRoute.Bestellingen.FirstOrDefault());//Weet niet waar deze regel voor is maar ik zag hem staan bij de click methode (click is overbodig geworden)
-
             }
             if (CurrentRoute != null && FollowedRoute.Any())
             {

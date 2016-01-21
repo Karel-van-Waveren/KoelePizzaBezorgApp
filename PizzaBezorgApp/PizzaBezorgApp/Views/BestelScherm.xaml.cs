@@ -36,11 +36,14 @@ namespace PizzaBezorgApp.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           // if (!(AppGlobal.Instance._CurrentSession.FollowedRoute == null) && AppGlobal.Instance._CurrentSession.FollowedRoute.Count() == 0)
-           // {
-           //     AppGlobal.Instance._CurrentSession.FollowedRoute.Add(AppGlobal.Instance._CurrentSession.CurrentRoute.LocationList.FirstOrDefault());//Weet niet waar deze regel voor is maar ik zag hem staan bij de click methode (click is overbodig geworden)
-           // }
+            AppGlobal.Instance._CurrentSession.SwitchRoute();
+            if (!(AppGlobal.Instance._CurrentSession.FollowedRoute == null) && AppGlobal.Instance._CurrentSession.FollowedRoute.Count() == 0)
+            {
+                AppGlobal.Instance._CurrentSession.FollowedRoute.Add(AppGlobal.Instance._CurrentSession.CurrentRoute.LocationList.FirstOrDefault());//Weet niet waar deze regel voor is maar ik zag hem staan bij de click methode (click is overbodig geworden)
+            }
             Frame.Navigate(typeof(KaartScherm));
+            
+
         }
     }
 }

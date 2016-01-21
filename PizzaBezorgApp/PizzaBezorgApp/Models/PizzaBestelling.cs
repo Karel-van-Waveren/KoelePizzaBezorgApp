@@ -8,41 +8,14 @@ using Windows.Devices.Geolocation.Geofencing;
 
 namespace PizzaBezorgApp.Models
 {
-    public class PizzaBestelling
+    public class PizzaBestelling : Bestelling
     {
-        public int aantal { get; set; }
-        public string soort { get; }
-        public BasicGeoposition position { get; }
-        public Geofence fence { get; }
+        public string SoortPizza { get; set; }
 
-        public PizzaBestelling(int aantal, string soort, BasicGeoposition position)
+        public PizzaBestelling(int aantal, string soortPizza, BasicGeoposition position) : base(aantal, position)
         {
-            this.aantal = aantal;
-            this.soort = soort;
-            this.position = position;
-            AddFence();
+            this.SoortPizza = soortPizza;
         }
 
-        public void AddFence()
-        {
-            // Replace if it already exists for this maneuver key
-            var oldFence = GeofenceMonitor.Current.Geofences.Where(p => p.Id == soort.ToString()).FirstOrDefault();
-            if (oldFence != null)
-            {
-                GeofenceMonitor.Current.Geofences.Remove(oldFence);
-            }
-
-            Geocircle geocircle = new Geocircle(position, 25);
-
-            bool singleUse = true;
-
-            MonitoredGeofenceStates mask = 0;
-
-            mask |= MonitoredGeofenceStates.Entered;
-            mask |= MonitoredGeofenceStates.Exited;
-
-            var geofence = new Geofence(soort.ToString(), geocircle, mask, singleUse, TimeSpan.FromSeconds(1));
-            GeofenceMonitor.Current.Geofences.Add(geofence);
-        }
     }
 }

@@ -44,14 +44,14 @@ namespace PizzaBezorgApp.Views
             timer.Tick += timer_Tick;
             CenterMap();
             RefreshMapLocation();
-            SetPushpins();
         }
 
         private void timer_Tick(object sender, object e)
         {
             RefreshMapLocation();
-            if (AppGlobal.Instance.BestellingController.Bestellingen.Any())
+            if (AppGlobal.Instance._CurrentSession.GetToFollowRoute().Any())
                 UpdateRouteOnMap();
+              
         }
 
         public async void CenterMap()
@@ -62,9 +62,9 @@ namespace PizzaBezorgApp.Views
 
         private void SetPushpins()
         {
-            if (AppGlobal.Instance.BestellingController.Bestellingen != null)
+            if (AppGlobal.Instance._CurrentSession.CurrentRoute != null)
             {
-                foreach (Bestelling b in AppGlobal.Instance.BestellingController.Bestellingen)
+                foreach (Bestelling b in AppGlobal.Instance._CurrentSession.CurrentRoute.Bestellingen)
                 {
                     // Create a MapIcon.
                     MapIcon icon = new MapIcon();
@@ -102,8 +102,8 @@ namespace PizzaBezorgApp.Views
                     viewOfRoute.OutlineColor = Colors.LightGray;
 
                     MapRouteView currentFollowingPath = new MapRouteView(currentPath.Route);
-                    currentFollowingPath.RouteColor = Colors.RoyalBlue;
-                    currentFollowingPath.OutlineColor = Colors.RoyalBlue;
+                    currentFollowingPath.RouteColor = Colors.Crimson;
+                    currentFollowingPath.OutlineColor = Colors.Crimson;
 
                     // Add the new MapRouteView to the Routes collection
                     // of the MapControl.

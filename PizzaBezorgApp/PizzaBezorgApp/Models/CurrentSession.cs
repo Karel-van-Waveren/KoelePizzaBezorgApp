@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace PizzaBezorgApp.Models
         
         public void SwitchRoute()
         {
-            CurrentRoute = AppGlobal.Instance.BestellingController;
+            CurrentRoute = AppGlobal.Instance.BestellingController ;
         }
 
         public static event EventHandler RouteChanged;
@@ -41,16 +42,16 @@ namespace PizzaBezorgApp.Models
         public List<Bestelling> GetToFollowRoute()
         {
             List<Bestelling> ToFollow = new List<Bestelling>();
-            if (FollowedRoute == null)
-            {
-                FollowedRoute = new List<Bestelling>();
+             if (FollowedRoute == null)
+             {
+                 FollowedRoute = new List<Bestelling>();
+             }
+             if (CurrentRoute != null && FollowedRoute.Any())
+             {
+                 ToFollow = CurrentRoute.Bestellingen.Except(FollowedRoute).ToList();
             }
-            if (CurrentRoute != null && FollowedRoute.Any())
-            {
-                ToFollow = CurrentRoute.Bestellingen.Except(FollowedRoute).ToList();
-            }
-
-            return ToFollow;
+          
+                return ToFollow;
         }
     }
 }

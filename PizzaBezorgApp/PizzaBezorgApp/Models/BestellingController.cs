@@ -1,10 +1,6 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Devices.Geolocation;
 
 namespace PizzaBezorgApp.Models
 {
@@ -16,42 +12,32 @@ namespace PizzaBezorgApp.Models
         {
             Bestellingen = new List<Bestelling>();
             LocationList = new List<Location>();
-            LoadBestelling();
             AddTestBestellingen();
         }
 
         public List<Bestelling> LoadBestelling()
         {
-            List<Bestelling> pizzabestellingen = new List<Bestelling>();
-
             var bestelQuery =
             from bestel in Bestellingen
             where bestel  is PizzaBestelling
             select bestel;
-            foreach (var num in bestelQuery)
-            {
-                pizzabestellingen.Add(num);
-            }
-            return pizzabestellingen;
+            return bestelQuery.ToList();
         }
 
         public void AddTestBestellingen()
         {
-            BasicGeoposition Position = new BasicGeoposition();
-            Position.Latitude = 51.58878;
-            Position.Longitude = 4.77549;
             //test
-            Bestellingen.Add(new PizzaBestelling("hans", 4, "hawai", Position));
-            Bestellingen.Add(new PizzaBestelling("hans", 3, "salami", Position));
-            Bestellingen.Add(new PizzaBestelling("paul", 2, "kebab", Position));
-            Bestellingen.Add(new PizzaBestelling("paul", 4, "hawai", Position));
-            Bestellingen.Add(new PizzaBestelling("paul", 1, "salami", Position));
+            Bestellingen.Add(new PizzaBestelling("karel", 4, "supreme","Breda","Bergdreef130"));
+            //Bestellingen.Add(new PizzaBestelling("hans", 3, "salami"));
+            //Bestellingen.Add(new PizzaBestelling("paul", 2, "kebab"));
+            //Bestellingen.Add(new PizzaBestelling("paul", 4, "hawaii"));
+            //Bestellingen.Add(new PizzaBestelling("paul", 1, "salami"));
 
-            LocationList.Add(new PizzaBestelling("hans", 4, "hawai", Position));
-            LocationList.Add(new PizzaBestelling("hans", 3, "salami", Position));
-            LocationList.Add(new PizzaBestelling("paul", 2, "kebab", Position));
-            LocationList.Add(new PizzaBestelling("paul", 4, "hawai", Position));
-            LocationList.Add(new PizzaBestelling("paul", 1, "salami", Position));
+            //LocationList.Add(new PizzaBestelling("hans", 4, "hawai", Position));
+            //LocationList.Add(new PizzaBestelling("hans", 3, "salami", Position));
+            //LocationList.Add(new PizzaBestelling("paul", 2, "kebab", Position));
+            //LocationList.Add(new PizzaBestelling("paul", 4, "hawai", Position));
+            //LocationList.Add(new PizzaBestelling("paul", 1, "salami", Position));
         }
     }
 }

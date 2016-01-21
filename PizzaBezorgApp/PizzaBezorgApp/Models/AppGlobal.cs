@@ -15,10 +15,13 @@ namespace PizzaBezorgApp.Models
         public BestellingController BestellingController { get; set; }
         public GeoUtil _GeoUtil;
         public CurrentSession _CurrentSession;
+        public List<Bestelling> bestellingen; 
 
         public AppGlobal()
         {
             BestellingController = new BestellingController();
+            BestellingController.AddTestBestellingen();
+            bestellingen = BestellingController.LoadBestelling();
             _GeoUtil = new GeoUtil();
             _CurrentSession = new CurrentSession();
         }

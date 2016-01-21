@@ -5,7 +5,7 @@ namespace PizzaBezorgApp.Models
     public class PizzaBestelling : Bestelling
     {
 
-        public PizzaBestelling(string besteller, int aantal, string soort, BasicGeoposition position) : base(besteller, aantal, soort, position)
+        public PizzaBestelling(string besteller, int aantal, string soort , string stad , string adres) : base(besteller, aantal, soort,stad,adres)
         {
         }
 

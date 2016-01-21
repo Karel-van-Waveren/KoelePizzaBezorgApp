@@ -55,9 +55,9 @@ namespace PizzaBezorgApp.Views
 
         private void SetPushpins()
         {
-            if (AppGlobal.Instance.PizzaBestellingen != null)
+            if (AppGlobal.Instance.BestellingController.LoadBestelling() != null)
             {
-                foreach (PizzaBestelling l in AppGlobal.Instance.PizzaBestellingen)
+                foreach (Bestelling l in AppGlobal.Instance.BestellingController.LoadBestelling())
                 {
                     // Create a MapIcon.
                     MapIcon icon = new MapIcon();
@@ -81,5 +81,6 @@ namespace PizzaBezorgApp.Views
             user.Location = pos.Coordinate.Point;
             user.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/icons/pin65.png"));
         }
+
     }
 }

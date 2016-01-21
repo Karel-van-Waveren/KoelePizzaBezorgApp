@@ -97,6 +97,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AppGlobal.cs" />
+    <Compile Include="Models\BestellingController.cs" />
     <Compile Include="Models\GeofenceMonictorExtentions.cs" />
     <Compile Include="Models\GeopointExtensions.cs" />
     <Compile Include="Models\GeoUtil.cs" />

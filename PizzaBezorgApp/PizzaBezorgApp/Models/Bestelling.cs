@@ -13,11 +13,13 @@ namespace PizzaBezorgApp.Models
         public int aantal { get; set; }
         public BasicGeoposition position { get; set; }
         public Geofence fence { get; set; }
+        public string soort { get; set; }
 
-        public Bestelling(int aantal,BasicGeoposition position)
+        public Bestelling(int aantal,string soort, BasicGeoposition position)
         {
             this.aantal = aantal;
             this.position = position;
+            this.soort = soort;
             AddFence();
         }
 

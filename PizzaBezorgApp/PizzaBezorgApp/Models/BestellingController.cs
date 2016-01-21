@@ -13,6 +13,7 @@ namespace PizzaBezorgApp.Models
             AddTestBestellingen();
         }
 
+        //Geef een lijst terug van alle pizza bestellingen 
         public List<Bestelling> LoadBestelling()
         {
             var bestelQuery =
@@ -29,8 +30,6 @@ namespace PizzaBezorgApp.Models
             Bestellingen.Add(new PizzaBestelling("Marnix", 4, "Hawaii", "Breda", "Sleutelbloem56"));
             Bestellingen.Add(new PizzaBestelling("Robert", 4, "Hawaii", "Terheijden", "Wilgenstraat3"));
             Bestellingen.Add(new PizzaBestelling("Jean-pierre", 4, "Champiogn", "Maastricht", "Hoogbrugstraat5"));
-
-
         }
     }
 }

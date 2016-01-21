@@ -37,7 +37,7 @@ namespace PizzaBezorgApp.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AppGlobal.Instance._CurrentSession.SwitchRoute();
-            if (!(AppGlobal.Instance._CurrentSession.FollowedRoute == null) && AppGlobal.Instance._CurrentSession.FollowedRoute.Count() == 0)
+            if (AppGlobal.Instance._CurrentSession.FollowedRoute != null && !AppGlobal.Instance._CurrentSession.FollowedRoute.Any())
             {
                 AppGlobal.Instance._CurrentSession.FollowedRoute.Add(AppGlobal.Instance._CurrentSession.CurrentRoute.Bestellingen.FirstOrDefault());
             }

@@ -10,13 +10,15 @@ namespace PizzaBezorgApp.Models
 {
     public class Bestelling : Location
     {
+        public string besteller { get; set; }
         public int aantal { get; set; }
         public BasicGeoposition Position { get; set; }
         public Geofence fence { get; set; }
         public string soort { get; set; }
 
-        public Bestelling(int aantal,string soort, BasicGeoposition position)
+        public Bestelling(string besteller, int aantal,string soort, BasicGeoposition position)
         {
+            this.besteller = besteller;
             this.aantal = aantal;
             this.Position = position;
             this.soort = soort;

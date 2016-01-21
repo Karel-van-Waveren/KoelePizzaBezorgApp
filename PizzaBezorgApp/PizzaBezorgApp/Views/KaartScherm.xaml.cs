@@ -77,7 +77,6 @@ namespace PizzaBezorgApp.Views
 
         private async void UpdateRouteOnMap()
         {
-            Debug.WriteLine("error");
             List<Location> route = AppGlobal.Instance._CurrentSession.GetToFollowRoute();
 
             if (!route.Any())

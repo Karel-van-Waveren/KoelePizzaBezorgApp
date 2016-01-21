@@ -41,17 +41,17 @@ namespace PizzaBezorgApp.Models
             Position.Latitude = 51.58878;
             Position.Longitude = 4.77549;
             //test
-            Bestellingen.Add(new PizzaBestelling(4, "hawai", Position));
-            Bestellingen.Add(new PizzaBestelling(3, "salami", Position));
-            Bestellingen.Add(new PizzaBestelling(2, "kebab", Position));
-            Bestellingen.Add(new PizzaBestelling(4, "hawai", Position));
-            Bestellingen.Add(new PizzaBestelling(1, "salami", Position));
+            Bestellingen.Add(new PizzaBestelling("hans", 4, "hawai", Position));
+            Bestellingen.Add(new PizzaBestelling("hans", 3, "salami", Position));
+            Bestellingen.Add(new PizzaBestelling("paul", 2, "kebab", Position));
+            Bestellingen.Add(new PizzaBestelling("paul", 4, "hawai", Position));
+            Bestellingen.Add(new PizzaBestelling("paul", 1, "salami", Position));
 
-            LocationList.Add(new PizzaBestelling(4, "hawai", Position));
-            LocationList.Add(new PizzaBestelling(3, "salami", Position));
-            LocationList.Add(new PizzaBestelling(2, "kebab", Position));
-            LocationList.Add(new PizzaBestelling(4, "hawai", Position));
-            LocationList.Add(new PizzaBestelling(1, "salami", Position));
+            LocationList.Add(new PizzaBestelling("hans", 4, "hawai", Position));
+            LocationList.Add(new PizzaBestelling("hans", 3, "salami", Position));
+            LocationList.Add(new PizzaBestelling("paul", 2, "kebab", Position));
+            LocationList.Add(new PizzaBestelling("paul", 4, "hawai", Position));
+            LocationList.Add(new PizzaBestelling("paul", 1, "salami", Position));
         }
     }
 }

@@ -19,12 +19,13 @@
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Bestelling">
                     <StackPanel>
+                        <TextBlock FontSize="20" Text="{x:Bind besteller}"/>
                         <TextBlock FontSize="16" Text="{x:Bind soort}"/>
                         <TextBlock FontSize="10" Text="{x:Bind aantal}"/>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button Content="Kaart" Click="Button_Click" Grid.Row="2"/>
+        <Button Content="Begin Bezorging" Click="Button_Click" Grid.Row="2"/>
     </Grid>
 </Page>

@@ -9,12 +9,12 @@ namespace PizzaBezorgApp.Models
     public class CurrentSession
     {
 
-        public List<Location> FollowedRoute;
+        public List<Bestelling> FollowedRoute;
         public BestellingController _currentRoute;
          
         public CurrentSession()
         {
-            FollowedRoute = new List<Location>();
+            FollowedRoute = new List<Bestelling>();
         }
 
         public BestellingController CurrentRoute
@@ -25,7 +25,7 @@ namespace PizzaBezorgApp.Models
         
         public void SwitchRoute()
         {
-            CurrentRoute = new BestellingController();
+            CurrentRoute = AppGlobal.Instance.BestellingController;
         }
 
         public static event EventHandler RouteChanged;
@@ -38,12 +38,12 @@ namespace PizzaBezorgApp.Models
             }
         }
 
-        public List<Location> GetToFollowRoute()
+        public List<Bestelling> GetToFollowRoute()
         {
-            List<Location> ToFollow = new List<Location>();
+            List<Bestelling> ToFollow = new List<Bestelling>();
             if (FollowedRoute == null)
             {
-                FollowedRoute = new List<Location>();
+                FollowedRoute = new List<Bestelling>();
             }
             if (CurrentRoute != null && FollowedRoute.Any())
             {

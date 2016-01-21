@@ -7,11 +7,9 @@ namespace PizzaBezorgApp.Models
     public class BestellingController
     {
         public List<Bestelling> Bestellingen;
-        public List<Location> LocationList;
         public BestellingController()
         {
             Bestellingen = new List<Bestelling>();
-            LocationList = new List<Location>();
             AddTestBestellingen();
         }
 
@@ -32,12 +30,7 @@ namespace PizzaBezorgApp.Models
             //Bestellingen.Add(new PizzaBestelling("paul", 2, "kebab"));
             //Bestellingen.Add(new PizzaBestelling("paul", 4, "hawaii"));
             //Bestellingen.Add(new PizzaBestelling("paul", 1, "salami"));
-
-            //LocationList.Add(new PizzaBestelling("hans", 4, "hawai", Position));
-            //LocationList.Add(new PizzaBestelling("hans", 3, "salami", Position));
-            //LocationList.Add(new PizzaBestelling("paul", 2, "kebab", Position));
-            //LocationList.Add(new PizzaBestelling("paul", 4, "hawai", Position));
-            //LocationList.Add(new PizzaBestelling("paul", 1, "salami", Position));
+            
         }
     }
 }

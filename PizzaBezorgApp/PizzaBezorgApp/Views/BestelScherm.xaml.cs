@@ -31,7 +31,7 @@ namespace PizzaBezorgApp.Views
         {
             this.InitializeComponent();
             DataContext = new BestelSchermViewModel();
-            bestellingen = AppGlobal.Instance.BestellingController.Bestellingen;
+            bestellingen = AppGlobal.Instance.BestellingController.LoadBestelling();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -39,7 +39,7 @@ namespace PizzaBezorgApp.Views
             AppGlobal.Instance._CurrentSession.SwitchRoute();
             if (!(AppGlobal.Instance._CurrentSession.FollowedRoute == null) && AppGlobal.Instance._CurrentSession.FollowedRoute.Count() == 0)
             {
-                AppGlobal.Instance._CurrentSession.FollowedRoute.Add(AppGlobal.Instance._CurrentSession.CurrentRoute.LocationList.FirstOrDefault());//Weet niet waar deze regel voor is maar ik zag hem staan bij de click methode (click is overbodig geworden)
+                AppGlobal.Instance._CurrentSession.FollowedRoute.Add(AppGlobal.Instance._CurrentSession.CurrentRoute.Bestellingen.FirstOrDefault());
             }
             Frame.Navigate(typeof(KaartScherm));
             

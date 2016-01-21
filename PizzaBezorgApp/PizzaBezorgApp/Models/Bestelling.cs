@@ -11,7 +11,7 @@ using Windows.Media.DialProtocol;
 
 namespace PizzaBezorgApp.Models
 {
-    public class Bestelling : Location
+    public class Bestelling
     {
         public string besteller { get; set; }
         public int aantal { get; set; }
@@ -54,7 +54,7 @@ namespace PizzaBezorgApp.Models
             GeofenceMonitor.Current.Geofences.Add(geofence);
         }
 
-        private async Task<string> GetAdress()
+        private async Task<string> GetAdres()
         {
             string url = "http://dev.virtualearth.net/REST/v1/Locations?countryRegion=NL&locality=" + stad +
                          "&addressLine=" + adres +
@@ -71,7 +71,7 @@ namespace PizzaBezorgApp.Models
 
         public async void GetGeopoint()
         {
-            string cmd = await GetAdress();
+            string cmd = await GetAdres();
             JObject allInfo = JObject.Parse(cmd);
             var info = allInfo["resourceSets"].First["resources"].First["point"]["coordinates"];
             var lati = info.First.ToString();

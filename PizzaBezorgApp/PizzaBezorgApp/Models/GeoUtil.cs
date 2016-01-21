@@ -91,14 +91,14 @@ namespace PizzaBezorgApp.Models
             return null;
         }
 
-        public async Task<MapRouteFinderResult> GetRoutePoint2Point(List<Location> routeList)
+        public async Task<MapRouteFinderResult> GetRoutePoint2Point(List<Bestelling> routeList)
         {
             try
             {
                 List<Geopoint> geoList = new List<Geopoint>();
                 geoList.Add(Cur_Position.Coordinate.Point);
 
-                foreach (Location l in routeList)
+                foreach (Bestelling l in routeList)
                 {
                     geoList.Add(new Geopoint(l.Position));
                 }

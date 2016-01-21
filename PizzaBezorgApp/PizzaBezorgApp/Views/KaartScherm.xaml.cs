@@ -44,12 +44,13 @@ namespace PizzaBezorgApp.Views
             timer.Tick += timer_Tick;
             CenterMap();
             RefreshMapLocation();
+            SetPushpins();
         }
 
         private void timer_Tick(object sender, object e)
         {
             RefreshMapLocation();
-            if (AppGlobal.Instance._CurrentSession.GetToFollowRoute().Any())
+            if (AppGlobal.Instance.BestellingController.Bestellingen.Any())
                 UpdateRouteOnMap();
         }
 
@@ -61,13 +62,13 @@ namespace PizzaBezorgApp.Views
 
         private void SetPushpins()
         {
-            if (AppGlobal.Instance._CurrentSession.CurrentRoute != null)
+            if (AppGlobal.Instance.BestellingController.Bestellingen != null)
             {
-                foreach (Location l in AppGlobal.Instance._CurrentSession.CurrentRoute.Bestellingen)
+                foreach (Bestelling b in AppGlobal.Instance.BestellingController.Bestellingen)
                 {
                     // Create a MapIcon.
                     MapIcon icon = new MapIcon();
-                    icon.Location = new Geopoint(l.Position);
+                    icon.Location = new Geopoint(b.Position);
                     icon.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/icons/museum35.png"));
                     icon.NormalizedAnchorPoint = new Point(0.5, 1.0);
                     MapControl1.MapElements.Add(icon);
@@ -77,7 +78,7 @@ namespace PizzaBezorgApp.Views
 
         private async void UpdateRouteOnMap()
         {
-            List<Location> route = AppGlobal.Instance._CurrentSession.GetToFollowRoute();
+            List<Bestelling> route = AppGlobal.Instance._CurrentSession.GetToFollowRoute();
 
             if (!route.Any())
             {
@@ -87,7 +88,7 @@ namespace PizzaBezorgApp.Views
             }
             else
             {
-                List<Location> firstRoute = new List<Location>();
+                List<Bestelling> firstRoute = new List<Bestelling>();
                 firstRoute.Add(route.ElementAt(0));
                 // Get the route between the points.
                 MapRouteFinderResult routePoints = await AppGlobal.Instance._GeoUtil.GetRoutePoint2Point(route);

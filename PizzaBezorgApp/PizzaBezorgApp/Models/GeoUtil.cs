@@ -69,7 +69,6 @@ namespace PizzaBezorgApp.Models
                         }
                         else
                         {
-                            //Om te testen. Moet nog anders. 
                             var dialog = new Windows.UI.Popups.MessageDialog(ex.ToString());
                         }
                         return null;

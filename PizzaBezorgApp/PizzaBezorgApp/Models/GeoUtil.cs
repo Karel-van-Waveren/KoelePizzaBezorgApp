@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
+using Windows.Services.Maps;
 
 namespace PizzaBezorgApp.Models
 {
@@ -14,12 +15,19 @@ namespace PizzaBezorgApp.Models
         private CancellationTokenSource _cts;
         private Geolocator geoLocator;
         public GeolocationAccessStatus AccessStatus;
+        private static Geoposition Cur_Position;
 
 
         public GeoUtil()
         {
             geoLocator = new Geolocator();
             geoLocator.DesiredAccuracy = PositionAccuracy.High;
+            geoLocator.PositionChanged += GeoLocator_PositionChanged;
+        }
+
+        private void GeoLocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        {
+            Cur_Position = args.Position;
         }
 
         public async void RequestAccess()
@@ -81,6 +89,30 @@ namespace PizzaBezorgApp.Models
             }
 
             return null;
+        }
+
+        public async Task<MapRouteFinderResult> GetRoutePoint2Point(List<Location> routeList)
+        {
+            try
+            {
+                List<Geopoint> geoList = new List<Geopoint>();
+                geoList.Add(Cur_Position.Coordinate.Point);
+
+                foreach (Location l in routeList)
+                {
+                    geoList.Add(new Geopoint(l.Position));
+                }
+
+                // Get the route between the points.
+                MapRouteFinderResult result = await MapRouteFinder.GetWalkingRouteFromWaypointsAsync(geoList);
+
+                return result;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("no access to location");
+                return null;
+            }
         }
     }
 }

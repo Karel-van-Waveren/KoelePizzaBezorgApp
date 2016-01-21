@@ -8,17 +8,17 @@ using Windows.Devices.Geolocation.Geofencing;
 
 namespace PizzaBezorgApp.Models
 {
-    public class Bestelling
+    public class Bestelling : Location
     {
         public int aantal { get; set; }
-        public BasicGeoposition position { get; set; }
+        public BasicGeoposition Position { get; set; }
         public Geofence fence { get; set; }
         public string soort { get; set; }
 
         public Bestelling(int aantal,string soort, BasicGeoposition position)
         {
             this.aantal = aantal;
-            this.position = position;
+            this.Position = position;
             this.soort = soort;
             AddFence();
         }
@@ -32,7 +32,7 @@ namespace PizzaBezorgApp.Models
                 GeofenceMonitor.Current.Geofences.Remove(oldFence);
             }
 
-            Geocircle geocircle = new Geocircle(position, 25);
+            Geocircle geocircle = new Geocircle(Position, 25);
 
             bool singleUse = true;
 

@@ -14,10 +14,12 @@ namespace PizzaBezorgApp.Models
         public static AppGlobal Instance { get { return _Instance ?? (_Instance = new AppGlobal()); } }
         public BestellingController BestellingController { get; set; }
         public GeoUtil _GeoUtil;
+        public CurrentSession _CurrentSession;
 
         public AppGlobal()
         {
             _GeoUtil = new GeoUtil();
+            _CurrentSession = new CurrentSession();
             BestellingController = new BestellingController();
             BestellingController.AddTestBestellingen();
             BestellingController.LoadBestelling();

@@ -10,10 +10,12 @@ namespace PizzaBezorgApp.Models
 {
     public class BestellingController
     {
-        List<Bestelling> Bestellingen;
+        public List<Bestelling> Bestellingen;
+        public List<Location> LocationList;
         public BestellingController()
         {
             Bestellingen = new List<Bestelling>();
+            LocationList = new List<Location>();
         }
 
         public List<Bestelling> LoadBestelling()

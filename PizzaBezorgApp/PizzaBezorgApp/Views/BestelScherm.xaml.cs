@@ -1,4 +1,5 @@
-﻿using PizzaBezorgApp.ViewModels;
+﻿using PizzaBezorgApp.Models;
+using PizzaBezorgApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,14 +25,21 @@ namespace PizzaBezorgApp.Views
     /// </summary>
     public sealed partial class BestelScherm : Page
     {
+
+        private List<Bestelling> bestellingen;
         public BestelScherm()
         {
             this.InitializeComponent();
             DataContext = new BestelSchermViewModel();
+            bestellingen = AppGlobal.Instance.BestellingController.Bestellingen;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+           // if (!(AppGlobal.Instance._CurrentSession.FollowedRoute == null) && AppGlobal.Instance._CurrentSession.FollowedRoute.Count() == 0)
+           // {
+           //     AppGlobal.Instance._CurrentSession.FollowedRoute.Add(AppGlobal.Instance._CurrentSession.CurrentRoute.LocationList.FirstOrDefault());//Weet niet waar deze regel voor is maar ik zag hem staan bij de click methode (click is overbodig geworden)
+           // }
             Frame.Navigate(typeof(KaartScherm));
         }
     }

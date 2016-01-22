@@ -35,6 +35,7 @@ namespace PizzaBezorgApp.Views
     {
         MapIcon user = new MapIcon();
         DispatcherTimer timer = new DispatcherTimer();
+        public int count=0;
 
         public KaartScherm()
         {
@@ -52,9 +53,11 @@ namespace PizzaBezorgApp.Views
         private void timer_Tick(object sender, object e)
         {
             RefreshMapLocation();
-            if (AppGlobal.Instance._CurrentSession.GetToFollowRoute().Any())
+            if (AppGlobal.Instance._CurrentSession.GetToFollowRoute().Any() && count==0)
+            {
+                count++;
                 UpdateRouteOnMap();
-              
+            }
         }
 
         public async void CenterMap()

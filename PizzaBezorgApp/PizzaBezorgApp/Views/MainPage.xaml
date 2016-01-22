@@ -10,8 +10,4 @@
     <Page.DataContext>
         <VM:MainPageViewModel/>
     </Page.DataContext>
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="Begin" Click="Button_Click" HorizontalAlignment="Center"/>
-    </Grid>
 </Page>

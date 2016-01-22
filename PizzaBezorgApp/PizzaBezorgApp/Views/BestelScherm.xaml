@@ -20,9 +20,9 @@
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Bestelling">
                     <StackPanel>
-                        <TextBlock FontSize="20" Text="{x:Bind besteller}"/>
+                        <TextBlock FontSize="20" Text="{x:Bind besteller}" Width="150"/>
                         <TextBlock FontSize="16" Text="{x:Bind soort}"/>
-                        <TextBlock FontSize="10" Text="{x:Bind aantal}"/>
+                        <TextBlock FontSize="16" Text="{x:Bind aantal}"/>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

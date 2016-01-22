@@ -30,10 +30,6 @@ namespace PizzaBezorgApp
             this.InitializeComponent();
             DataContext = new MainPageViewModel();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(KaartScherm));
-        }
+        
     }
 }

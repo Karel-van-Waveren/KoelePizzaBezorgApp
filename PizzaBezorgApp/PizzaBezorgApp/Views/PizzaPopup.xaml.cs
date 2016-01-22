@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +31,12 @@ namespace PizzaBezorgApp.Views
             Soort.Text = "Soort: "+AppGlobal.Instance._CurrentSession.CurrentBestelling.soort;
             Aantal.Text = "Aantal: "+AppGlobal.Instance._CurrentSession.CurrentBestelling.aantal.ToString();
             Adres.Text = "Adres: "+AppGlobal.Instance._CurrentSession.CurrentBestelling.adres;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
         }
     }
 }

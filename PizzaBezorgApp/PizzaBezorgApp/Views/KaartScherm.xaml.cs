@@ -39,6 +39,7 @@ namespace PizzaBezorgApp.Views
         public KaartScherm()
         {
             this.InitializeComponent();
+
             DataContext = new KaartSchermViewModel();
             MapControl1.MapElements.Add(user);
             //Settings for timer
@@ -122,6 +123,8 @@ namespace PizzaBezorgApp.Views
             SetPushpins();
             timer.Start();
             GeofenceMonitor.Current.GeofenceStateChanged += GeofenceStateChanged;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+    AppViewBackButtonVisibility.Collapsed;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

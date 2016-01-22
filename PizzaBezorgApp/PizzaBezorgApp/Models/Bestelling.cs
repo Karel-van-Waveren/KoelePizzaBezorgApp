@@ -59,7 +59,7 @@ namespace PizzaBezorgApp.Models
         {
             string url = "http://dev.virtualearth.net/REST/v1/Locations?countryRegion=NL&locality=" + stad +
                          "&addressLine=" + adres +
-                         "&key=LmASekjs1bjQfxvA4OM3~V85W7tCphoOfYRlRHoYQZQ~Av6XwRGn0FrD0PhSTpCprZy12knFFh-UPKHGvEOnEISST7c5iHqwDbl-oN-TnTuY";
+                         "&key=" + AppGlobal.LOCAL_SETTINGS.Values["BingKey"];
 
 
             using (HttpClient httpcl = new HttpClient())

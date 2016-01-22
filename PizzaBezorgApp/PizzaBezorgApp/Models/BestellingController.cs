@@ -26,10 +26,10 @@ namespace PizzaBezorgApp.Models
         public void AddTestBestellingen()
         {
             //test
-           Bestellingen.Add(new PizzaBestelling("Karel", "supreme","Breda", "Bergdreef130", new List<string>{"Americana", "Supreme"}));
-           Bestellingen.Add(new PizzaBestelling("Marnix", "Hawaii", "Breda", "Sleutelbloem56", new List<string> { "Hawaii", "Chicken Kabab"}));
-           Bestellingen.Add(new PizzaBestelling("Robert", "Hawaii", "Terheijden", "Wilgenstraat3", new List<string> { "Hawaii", "Hawaii", "Hawaii" }));
-           Bestellingen.Add(new PizzaBestelling("Jean-pierre", "champignons", "Maastricht", "Hoogbrugstraat5", new List<string> { "champignons", "Veggie Pizza" }));
+           Bestellingen.Add(new PizzaBestelling("Karel", "supreme","Breda", "Bergdreef 130", new List<string>{"Americana", "Supreme"}));
+           Bestellingen.Add(new PizzaBestelling("Marnix", "Hawaii", "Breda", "Sleutelbloem 56", new List<string> { "Hawaii", "Chicken Kabab"}));
+           Bestellingen.Add(new PizzaBestelling("Robert", "Hawaii", "Terheijden", "Wilgenstraat 3", new List<string> { "Hawaii", "Hawaii", "Hawaii" }));
+           Bestellingen.Add(new PizzaBestelling("Jean-pierre", "champignons", "Breda", "Dotterbloem 2", new List<string> { "champignons", "Veggie Pizza" }));
         }
     }
 }

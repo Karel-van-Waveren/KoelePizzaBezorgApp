@@ -23,6 +23,7 @@
                         <TextBlock FontSize="20" Text="{x:Bind besteller}" Width="150"/>
                         <TextBlock FontSize="16" Text="{x:Bind soort}"/>
                         <TextBlock FontSize="16" Text="{x:Bind aantal}"/>
+                        <TextBlock FontSize="16" Text="{x:Bind adres}"/>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

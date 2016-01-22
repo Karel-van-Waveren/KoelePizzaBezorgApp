@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
@@ -30,6 +31,12 @@ namespace PizzaBezorgApp.Views
         public BestelScherm()
         {
             this.InitializeComponent();
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
+            {
+                Frame frame = Window.Current.Content as Frame;
+                frame.Navigate(typeof(KaartScherm));
+            };
             DataContext = new BestelSchermViewModel();
             bestellingen = AppGlobal.Instance.BestellingController.LoadBestelling();
         }

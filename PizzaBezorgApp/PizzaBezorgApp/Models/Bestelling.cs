@@ -52,6 +52,7 @@ namespace PizzaBezorgApp.Models
 
             var geofence = new Geofence(soort.ToString(), geocircle, mask, singleUse, TimeSpan.FromSeconds(1));
             GeofenceMonitor.Current.Geofences.Add(geofence);
+            fence = geofence;
         }
 
         private async Task<string> GetAdres()

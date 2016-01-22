@@ -12,6 +12,7 @@ namespace PizzaBezorgApp.Models
 
         public List<Bestelling> FollowedRoute;
         public BestellingController _currentRoute;
+        public Bestelling CurrentBestelling;
          
         public CurrentSession()
         {

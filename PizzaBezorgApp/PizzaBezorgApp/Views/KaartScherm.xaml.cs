@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Devices.Geolocation;
 using Windows.Devices.Geolocation.Geofencing;
 using Windows.Foundation;
@@ -13,6 +14,7 @@ using Windows.Foundation.Collections;
 using Windows.Services.Maps;
 using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
@@ -78,7 +80,7 @@ namespace PizzaBezorgApp.Views
 
         private async void UpdateRouteOnMap()
         {
-            List<Bestelling> route = AppGlobal.Instance._CurrentSession.GetToFollowRoute();
+            List<Bestelling> route = AppGlobal.Instance.BestellingController.Bestellingen;
 
             if (!route.Any())
             {
@@ -92,7 +94,7 @@ namespace PizzaBezorgApp.Views
                 firstRoute.Add(route.ElementAt(0));
                 // Get the route between the points.
                 MapRouteFinderResult routePoints = await AppGlobal.Instance._GeoUtil.GetRoutePoint2Point(route);
-                MapRouteFinderResult currentPath = await AppGlobal.Instance._GeoUtil.GetRoutePoint2Point(firstRoute);
+              //  MapRouteFinderResult currentPath = await AppGlobal.Instance._GeoUtil.GetRoutePoint2Point(firstRoute);
 
                 if (routePoints.Status == MapRouteFinderStatus.Success)
                 {
@@ -101,7 +103,7 @@ namespace PizzaBezorgApp.Views
                     viewOfRoute.RouteColor = Colors.LightGray;
                     viewOfRoute.OutlineColor = Colors.LightGray;
 
-                    MapRouteView currentFollowingPath = new MapRouteView(currentPath.Route);
+                    MapRouteView currentFollowingPath = new MapRouteView(routePoints.Route);
                     currentFollowingPath.RouteColor = Colors.Crimson;
                     currentFollowingPath.OutlineColor = Colors.Crimson;
 
@@ -145,6 +147,39 @@ namespace PizzaBezorgApp.Views
         private void Bestelling_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(BestelScherm));
+        }
+
+        private async void OnMapElementClick(MapControl sender, MapElementClickEventArgs args)
+        {
+            try
+            {
+                foreach (Bestelling b in AppGlobal.Instance.BestellingController.LoadBestelling())
+                    if (b.fence != null)
+                    {
+                        if ((b.Position.Longitude - 0.004) <= args.Location.Position.Longitude && (b.Position.Longitude + 0.004) >= args.Location.Position.Longitude)
+                        {
+                            if ((b.Position.Latitude - 0.004) <= args.Location.Position.Latitude && (b.Position.Latitude + 0.004) >= args.Location.Position.Latitude)
+                            {
+                                AppGlobal.Instance._CurrentSession.CurrentBestelling = b;
+                                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                                () =>
+                                {
+                                    PizzaPopup();
+                                });
+                                break;
+                            }
+                        }
+                    }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        private void PizzaPopup()
+        {
+            Frame.Navigate(typeof(PizzaPopup));
         }
     }
 }

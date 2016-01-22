@@ -21,10 +21,10 @@ namespace PizzaBezorgApp.Models
         public string stad { get; set; }
         public string adres { get; set; }
 
-        public Bestelling(string besteller, int aantal,string soort, string stad , string adres)
+        public Bestelling(string besteller, string soort, string stad , string adres)
         {
             this.besteller = besteller;
-            this.aantal = aantal;
+            this.aantal = 1;
             this.soort = soort;
             this.stad = stad;
             this.adres = adres;
